@@ -1,0 +1,16 @@
+{
+  "files": {
+    "main.css": "/triple-fantasy-card-logger.git/static/css/main.92a69277.css",
+    "main.js": "/triple-fantasy-card-logger.git/static/js/main.f3bf4ccf.js",
+    "static/js/787.cc6b796d.chunk.js": "/triple-fantasy-card-logger.git/static/js/787.cc6b796d.chunk.js",
+    "static/media/logo.svg": "/triple-fantasy-card-logger.git/static/media/logo.6ce24c58023cc2f8fd88fe9d219db6c6.svg",
+    "index.html": "/triple-fantasy-card-logger.git/index.html",
+    "main.92a69277.css.map": "/triple-fantasy-card-logger.git/static/css/main.92a69277.css.map",
+    "main.f3bf4ccf.js.map": "/triple-fantasy-card-logger.git/static/js/main.f3bf4ccf.js.map",
+    "787.cc6b796d.chunk.js.map": "/triple-fantasy-card-logger.git/static/js/787.cc6b796d.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.92a69277.css",
+    "static/js/main.f3bf4ccf.js"
+  ]
+}
