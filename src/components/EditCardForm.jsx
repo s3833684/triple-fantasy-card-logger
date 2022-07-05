@@ -15,10 +15,6 @@ function ExtraCardForm(props) {
   const colors = ['red', 'blue', 'green'];
   const [job, setJob] = useState('');
   const [color, setColor] = useState('');
-  const [num, setNum] = useState(1);
-  const [error, setError] = useState('');
-
-  const numbers = [...Array(9).keys()].map((i) => i + 1);
 
   const handleChangeJob = (newJob) => {
     setJob(newJob);
@@ -26,26 +22,17 @@ function ExtraCardForm(props) {
   const handleChangeColor = (newColor) => {
     setColor(newColor);
   };
-  const handleChangeNumber = (newNum) => {
-    setNum(newNum);
-  };
 
   const handleSubmit = () => {
-    if (!job || !color) {
-      setError('Invalid Input');
-    } else {
-      var newCard = {
-        job: job,
-        color: color,
-      };
-      props.addExtraCard(newCard, num);
-      setError('');
-    }
+    var newCard = {
+      job: job,
+      color: color,
+    };
+    props.saveEditCard(newCard);
   };
 
   return (
     <div>
-      <h1>{error}</h1>
       <Stack direction="row" spacing={2} justifyContent="center" padding={1}>
         {Object.keys(jobs).map((key) => {
           return (
@@ -70,20 +57,8 @@ function ExtraCardForm(props) {
           );
         })}
       </Stack>
-      <Stack direction="row" spacing={2} justifyContent="center" padding={1}>
-        {numbers.map((key) => {
-          return (
-            <Card_btn
-              variant={num === key ? 'outlined' : 'contained'}
-              color="primary"
-              onClick={() => handleChangeNumber(key)}
-              content={key}
-            ></Card_btn>
-          );
-        })}
-      </Stack>
       <FormControl fullWidth sx={{ mt: 3 }}>
-        <Button onClick={handleSubmit}>Add</Button>
+        <Button onClick={() => handleSubmit()}>Save</Button>
       </FormControl>
     </div>
   );
