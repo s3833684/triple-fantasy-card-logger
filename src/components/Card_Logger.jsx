@@ -35,7 +35,7 @@ const jobs = {
   paladin: paladin,
   priest: priest,
 };
-
+export const colors = ['red', 'blue', 'green'];
 const theme = createTheme({
   palette: {
     red: { main: '#F40B27' },
@@ -52,26 +52,31 @@ function Card_Logger(props) {
   const [extraCards, setExtraCards] = useState([]);
   const [currCardID, setCurrCardID] = useState(null);
 
-  const addExtraCard = (newCard, num) => {
+  const addExtraCard = (job, color, num) => {
     for (let i = 0; i < num; i++) {
+      var newCard = {
+        job: job,
+        color: color,
+        id: extraCards.length ? extraCards[extraCards.length - 1].id + 1 : 1,
+      };
       extraCards.push(newCard);
     }
     setExtraCards(extraCards);
     handleCloseAddCardForm();
-    return true;
   };
 
-  const saveEditCard = (newCard) => {
+  const saveEditCard = (job, color) => {
     console.log('before edit:', extraCards);
     console.log(currCardID);
-    extraCards[currCardID] = newCard;
-    setExtraCards(
-      extraCards.map((card, i) => {
-        if (i === currCardID) {
-          return newCard;
-        }
-      })
-    );
+    var newCard = {
+      job: job,
+      color: color,
+    };
+    var newArr = extraCards.map((card) => {
+      if (card.id === currCardID) return newCard;
+      else return card;
+    });
+    setExtraCards(newArr);
     // setExtraCards({ ...extraCards });
     handleCloseEditCardForm();
     console.log('after edit:', extraCards);
@@ -79,8 +84,14 @@ function Card_Logger(props) {
 
   const deleteCard = (id) => {
     console.log('delete card:', id);
-    extraCards.splice(id, 1);
-    setExtraCards(Object.assign(extraCards, []));
+    var newArr = extraCards
+      .map((card) => {
+        if (card.id !== id) {
+          return card;
+        }
+      })
+      .filter((n) => n);
+    setExtraCards(newArr);
     console.log(extraCards);
   };
 
@@ -170,14 +181,14 @@ function Card_Logger(props) {
                     i * 9,
                     extraCards.length < i * 9 ? undefined : (i + 1) * 9
                   )
-                  .map((ec, index) => {
+                  .map((ec) => {
                     return (
                       <Card_btn
                         color={ec.color}
                         job={jobs[ec.job]}
                         isExtraCard={true}
                         handleOpenEditCardForm={handleOpenEditCardForm}
-                        id={i * 9 + index}
+                        id={ec.id}
                         deleteCard={deleteCard}
                       ></Card_btn>
                     );

@@ -9,6 +9,7 @@ import Stack from '@mui/material/Stack';
 import Card_btn from './Card_btn';
 
 import blank from '../Blank.png';
+import colors from './Card_Logger';
 
 function ExtraCardForm(props) {
   const jobs = props.jobs;
@@ -34,11 +35,7 @@ function ExtraCardForm(props) {
     if (!job || !color) {
       setError('Invalid Input');
     } else {
-      var newCard = {
-        job: job,
-        color: color,
-      };
-      props.addExtraCard(newCard, num);
+      props.addExtraCard(job, color, num);
       setError('');
     }
   };

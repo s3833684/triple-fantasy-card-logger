@@ -24,11 +24,7 @@ function ExtraCardForm(props) {
   };
 
   const handleSubmit = () => {
-    var newCard = {
-      job: job,
-      color: color,
-    };
-    props.saveEditCard(newCard);
+    props.saveEditCard(job, color);
   };
 
   return (
