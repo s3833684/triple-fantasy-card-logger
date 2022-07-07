@@ -23,8 +23,9 @@ import paladin from '../Paladin.png';
 import priest from '../Priest.png';
 import ExtraCardForm from './ExtraCardForm';
 import EditCardForm from './EditCardForm';
+import BonusForm from './BonusForm';
 
-const jobs = {
+export const jobs = {
   knight: knight,
   thief: thief,
   warrior: warrior,
@@ -35,7 +36,9 @@ const jobs = {
   paladin: paladin,
   priest: priest,
 };
+
 export const colors = ['red', 'blue', 'green'];
+
 const theme = createTheme({
   palette: {
     red: { main: '#F40B27' },
@@ -66,8 +69,6 @@ function Card_Logger(props) {
   };
 
   const saveEditCard = (job, color) => {
-    console.log('before edit:', extraCards);
-    console.log(currCardID);
     var newCard = {
       job: job,
       color: color,
@@ -79,7 +80,6 @@ function Card_Logger(props) {
     setExtraCards(newArr);
     // setExtraCards({ ...extraCards });
     handleCloseEditCardForm();
-    console.log('after edit:', extraCards);
   };
 
   const deleteCard = (id) => {
@@ -109,6 +109,13 @@ function Card_Logger(props) {
   };
 
   const handleCloseEditCardForm = () => setOpenEditCardForm(false);
+
+  const [openBonusModal, setOpenBonusModal] = React.useState(false);
+  const handleOpenBonusModal = () => {
+    setOpenBonusModal(true);
+  };
+
+  const handleCloseBonusModal = () => setOpenBonusModal(false);
 
   const resetAll = () => {
     setCount(count + 1);
@@ -149,6 +156,13 @@ function Card_Logger(props) {
           >
             <AddIcon />
           </IconButton>
+          <Button
+            variant="contained"
+            onClick={() => handleOpenBonusModal()}
+            spacing={3}
+          >
+            Bonus
+          </Button>
         </Stack>
         <Stack direction="row" spacing={2} justifyContent="center" padding={1}>
           {Object.values(jobs).map((job) => {
@@ -213,6 +227,12 @@ function Card_Logger(props) {
               currCardID={currCardID}
               jobs={jobs}
             ></EditCardForm>
+          </Box>
+        </Modal>
+
+        <Modal open={openBonusModal} onClose={handleCloseBonusModal}>
+          <Box sx={modalStyle}>
+            <BonusForm></BonusForm>
           </Box>
         </Modal>
       </ThemeProvider>

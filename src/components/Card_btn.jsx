@@ -10,8 +10,6 @@ import DeleteIcon from '@mui/icons-material/Delete';
 
 import './Card_btn.css';
 
-import knight from '../Knight.png';
-
 /*
 Card Buutton element to show the job image inside the button
 <props name="onClick">onClick function passed from parent component, if none then run the default OnClick </props>
@@ -34,6 +32,16 @@ function Card_btn(props) {
 
   const handlePopoverClose = () => {
     setAnchorEl(null);
+  };
+
+  const handleEditCard = () => {
+    handlePopoverClose();
+    props.handleOpenEditCardForm(props.id);
+  };
+
+  const handleDeleteCard = () => {
+    handlePopoverClose();
+    props.deleteCard(props.id);
   };
 
   const open = Boolean(anchorEl);
@@ -75,16 +83,10 @@ function Card_btn(props) {
           aria-label="outlined primary button group"
           color="primary"
         >
-          <IconButton
-            aria-label="edit"
-            onClick={() => props.handleOpenEditCardForm(props.id)}
-          >
+          <IconButton aria-label="edit" onClick={handleEditCard}>
             <EditIcon />
           </IconButton>
-          <IconButton
-            aria-label="delete"
-            onClick={() => props.deleteCard(props.id)}
-          >
+          <IconButton aria-label="delete" onClick={handleDeleteCard}>
             <DeleteIcon />
           </IconButton>
         </ButtonGroup>
