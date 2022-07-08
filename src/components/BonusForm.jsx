@@ -31,7 +31,6 @@ function BonusForm(props) {
   const onClick = (card) => {
     //if the card already in the array, remove it
     const oldLength = cardsArr.length;
-    cardsArr.map((c) => console.log(c));
     var newArr = cardsArr.filter(
       (c) => c.job != card.job || c.color != card.color
     );
