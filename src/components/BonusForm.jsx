@@ -38,6 +38,7 @@ function BonusForm(props) {
     if (newArr.length !== oldLength) {
       defaultCards[id].clicked = !defaultCards[id].clicked;
       setDefaultCards([...defaultCards]);
+      setResult([]);
       return;
     }
     //if the card array is full, do nothing if it is not in the array(checked above)
